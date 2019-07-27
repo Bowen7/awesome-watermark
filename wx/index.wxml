@@ -1,0 +1,5 @@
+<view class="watermark-wrapper" id="watermark-wrapper">
+  <text wx:for="{{innerSpans}}" style="{{item.style}}" wx:key="{{item.text}}-{{index}}">
+    {{item.text}}
+  </text>
+</view>
