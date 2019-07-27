@@ -16,7 +16,26 @@ import { generateInnerSpans } from "../util";
 export default {
   name: "Watermark",
   props: {
-    text: String
+    text: {
+      type: String,
+      default: ""
+    },
+    angle: {
+      type: Number,
+      default: 30
+    },
+    row: {
+      type: Number,
+      default: 2
+    },
+    col: {
+      type: Number,
+      default: 3
+    },
+    textStyle: {
+      type: Object,
+      default: {}
+    }
   },
   data: function() {
     return {
@@ -47,10 +66,10 @@ export default {
       this.innerSpans = generateInnerSpans(
         {
           text: this.text,
-          angle: 30,
-          row: 2,
-          col: 3,
-          textStyle: { color: "#fff" }
+          angle: this.angle,
+          row: this.row,
+          col: this.col,
+          textStyle: this.textStyle
         },
         { width, height }
       );
