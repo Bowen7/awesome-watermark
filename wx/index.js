@@ -1,34 +1,23 @@
 const generateInnerSpans = (
-	{ text = "", angle = 30, row = 2, col = 3, textStyle },
-	{ height, width },
-	styleIsObject = true
+	{ text = "", angle = 30, row = 2, col = 3, textStyle = "" },
+	{ height, width }
 ) => {
-	!textStyle && (textStyle = styleIsObject ? {} : "");
+	if (text === "") {
+		return [];
+	}
+
 	const innerSpans = [];
 	const rowHeight = height / row;
 	const colWidth = width / col;
-	let style = styleIsObject
-		? {
-				transform: `translate(-50%,-50%) rotate(${angle}deg)`,
-				position: "absolute"
-		  }
-		: `transform:translate(-50%,-50%) rotate(${angle}deg);position:absolute;`;
+	let style = `transform:translate(-50%,-50%) rotate(${angle}deg);position:absolute;`;
 
 	for (let i = 0; i < row; i++) {
 		for (let j = 0; j < col; j++) {
-			let _style;
-			styleIsObject
-				? (_style = {
-						...style,
-						...textStyle,
-						top: `${(i + 0.5) * rowHeight}px`,
-						left: `${(j + 0.5) * colWidth}px`
-				  })
-				: (_style =
-						style +
-						textStyle +
-						`top:${(i + 0.5) * rowHeight}px;left:${(j + 0.5) *
-							colWidth}px;`);
+			const _style =
+				style +
+				textStyle +
+				`top:${(i + 0.5) * rowHeight}px;left:${(j + 0.5) *
+					colWidth}px;`;
 
 			innerSpans.push({
 				style: _style,
@@ -38,12 +27,37 @@ const generateInnerSpans = (
 	}
 	return innerSpans;
 };
+
 Component({
 	properties: {
-		text: String
+		text: {
+			type: String,
+			value: ""
+		},
+		angle: {
+			type: Number,
+			value: 30
+		},
+		row: {
+			type: Number,
+			value: 2
+		},
+		col: {
+			type: Number,
+			value: 3
+		},
+		textStyle: {
+			type: String,
+			value: ""
+		}
 	},
 	data: {
 		innerSpans: []
+	},
+	observers: {
+		text: function() {
+			this.pushInnerSpansToData();
+		}
 	},
 	lifetimes: {
 		ready() {
@@ -60,13 +74,12 @@ Component({
 					let innerSpans = generateInnerSpans(
 						{
 							text: this.data.text,
-							angle: 30,
-							row: 2,
-							col: 3,
-							textStyle: "color:#fff;"
+							angle: this.data.angle,
+							row: this.data.row,
+							col: this.data.col,
+							textStyle: this.data.textStyle
 						},
-						{ width, height },
-						false
+						{ width, height }
 					);
 					this.setData({
 						innerSpans
