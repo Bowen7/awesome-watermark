@@ -14,14 +14,14 @@ class Watermark extends Component {
 		};
 	}
 	componentDidMount() {
-		this.pushInnerSpansToState(props);
+		this.pushInnerSpansToState(this.props);
 	}
 
 	pushInnerSpansToState = props => {
-		const { text } = props;
+		const { text, angle, row, col, textStyle } = props;
 		const { offsetWidth: width, offsetHeight: height } = this.ref;
 		const innerSpans = generateInnerSpans(
-			{ text },
+			{ text, angle, row, col, textStyle },
 			{
 				width,
 				height
