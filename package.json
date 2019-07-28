@@ -1,0 +1,38 @@
+{
+  "name": "awesome-watermark",
+  "version": "1.0.4",
+  "description": "watermark component for vue,react and miniprogram",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-react": "babel src/react -d react --presets=env,es2015,react --plugins=transform-class-properties",
+    "build-util": "babel src/util.js -o util.js --presets=env,es2015 --plugins=transform-class-properties,transform-object-rest-spread"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bowen7/awesome-watermark.git"
+  },
+  "keywords": [
+    "watermark",
+    "vue",
+    "react",
+    "miniprogram",
+    "wx"
+  ],
+  "author": "bowen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bowen7/awesome-watermark/issues"
+  },
+  "homepage": "https://github.com/Bowen7/awesome-watermark#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-vue": "^2.0.2"
+  },
+  "miniprogram": "wx"
+}

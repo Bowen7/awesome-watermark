@@ -34,7 +34,9 @@ export default {
     },
     textStyle: {
       type: Object,
-      default: {}
+      default: function() {
+        return {};
+      }
     }
   },
   data: function() {
